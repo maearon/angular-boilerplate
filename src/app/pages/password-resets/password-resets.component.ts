@@ -1,9 +1,9 @@
-import { Component, type OnInit } from "@angular/core"
+import { Component,  OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { FormsModule } from "@angular/forms"
-import type { ActivatedRoute, Router } from "@angular/router"
-import type { ToastrService } from "ngx-toastr"
-import type { PasswordResetService } from "../../services/password-reset.service"
+import { ActivatedRoute, Router } from "@angular/router"
+import { ToastrService } from "ngx-toastr"
+import { PasswordResetService } from "../../services/password-reset.service"
 
 @Component({
   selector: "app-password-resets",

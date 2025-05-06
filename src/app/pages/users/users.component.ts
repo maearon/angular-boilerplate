@@ -1,12 +1,12 @@
-import { Component, type OnInit } from "@angular/core"
+import { Component,  OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { RouterModule } from "@angular/router"
 import { NgxPaginationModule } from "ngx-pagination"
-import type { ToastrService } from "ngx-toastr"
-import type { Store } from "@ngrx/store"
-import type { Observable } from "rxjs"
-import type { User } from "../../models/user.model"
-import type { UserService } from "../../services/user.service"
+import { ToastrService } from "ngx-toastr"
+import { Store } from "@ngrx/store"
+import { Observable } from "rxjs"
+import { User } from "../../models/user.model"
+import { UserService } from "../../services/user.service"
 import { selectUser } from "../../store/session/session.selectors"
 
 @Component({
@@ -41,14 +41,14 @@ import { selectUser } from "../../store/session/session.selectors"
 
             <a [routerLink]="['/users', user.id]" class="flex-grow-1">{{ user.name }}</a>
 
-            <button
+            <!-- <button
               *ngIf="currentUser$ | async as currentUser; else noUser"
               class="btn btn-sm btn-danger"
               (click)="confirmDelete(user.id, user.name)"
               [disabled]="currentUser.id === user.id"
             >
               delete
-            </button>
+            </button> -->
 
             <ng-template #noUser></ng-template>
           </li>

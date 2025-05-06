@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store"
-import type { User } from "../../models/user.model"
+import { User } from "../../models/user.model"
 import * as SessionActions from "./session.actions"
 
 export interface SessionState {

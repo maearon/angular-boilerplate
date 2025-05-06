@@ -1,14 +1,14 @@
-import { Component, type OnInit } from "@angular/core"
+import { Component,  OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { RouterModule } from "@angular/router"
 import { FormsModule } from "@angular/forms"
-import type { Store } from "@ngrx/store"
-import type { ToastrService } from "ngx-toastr"
+import { Store } from "@ngrx/store"
+import { ToastrService } from "ngx-toastr"
 import { NgxPaginationModule } from "ngx-pagination"
-import type { Observable } from "rxjs"
-import type { User } from "../../models/user.model"
-import type { Micropost } from "../../models/micropost.model"
-import type { MicropostService } from "../../services/micropost.service"
+import { Observable } from "rxjs"
+import { User } from "../../models/user.model"
+import { Micropost } from "../../models/micropost.model"
+import { MicropostService } from "../../services/micropost.service"
 import { selectLoggedIn, selectUser } from "../../store/session/session.selectors"
 
 @Component({
@@ -127,12 +127,12 @@ import { selectLoggedIn, selectUser } from "../../store/session/session.selector
                   </div>
                   <div class="timestamp text-muted small">
                     Posted {{ item.timestamp }} ago.
-                    <a *ngIf="(user$ | async)?.id === item.user_id"
+                    <!-- <a *ngIf="(user$ | async)?.id === item.user_id"
                        href="#"
                        (click)="removeMicropost($event, item.id)"
                        class="ms-2">
                       delete
-                    </a>
+                    </a> -->
                   </div>
                 </div>
               </li>

@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core"
-import type { Router } from "@angular/router"
-import type { Store } from "@ngrx/store"
+import { Router } from "@angular/router"
+import { Store } from "@ngrx/store"
 import { type Observable, of, throwError } from "rxjs"
 import { catchError, tap } from "rxjs/operators"
-import type { ApiService } from "./api.service"
+import { ApiService } from "./api.service"
 import type { User } from "../models/user.model"
 import * as SessionActions from "../store/session/session.actions"
 

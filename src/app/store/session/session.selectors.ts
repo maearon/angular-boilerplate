@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store"
-import type { SessionState } from "./session.reducer"
+import { SessionState } from "./session.reducer"
 
 export const selectSessionState = createFeatureSelector<SessionState>("session")
 

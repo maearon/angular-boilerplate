@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core"
-import type { Observable } from "rxjs"
-import type { ApiService } from "./api.service"
-import type { User, UserShow, UserEdit } from "../models/user.model"
-import type { Micropost } from "../models/micropost.model"
+import { Observable } from "rxjs"
+import { ApiService } from "./api.service"
+import { User, UserShow, UserEdit } from "../models/user.model"
+import { Micropost } from "../models/micropost.model"
 
 export interface UserListParams {
   page?: number

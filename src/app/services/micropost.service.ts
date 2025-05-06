@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
-import type { Observable } from "rxjs"
-import type { ApiService } from "./api.service"
-import type { Micropost } from "../models/micropost.model"
+import { Observable } from "rxjs"
+import { ApiService } from "./api.service"
+import { Micropost } from "../models/micropost.model"
 
 export interface MicropostListParams {
   page?: number

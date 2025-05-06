@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core"
-import type { CanActivate, Router, UrlTree } from "@angular/router"
-import type { Observable } from "rxjs"
-import type { AuthService } from "../services/auth.service"
-import type { ToastrService } from "ngx-toastr"
+import { CanActivate, Router, UrlTree } from "@angular/router"
+import { Observable } from "rxjs"
+import { AuthService } from "../services/auth.service"
+import { ToastrService } from "ngx-toastr"
 
 @Injectable({
   providedIn: "root",

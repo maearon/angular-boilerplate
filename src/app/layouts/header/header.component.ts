@@ -1,11 +1,11 @@
 import { Component } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { RouterModule } from "@angular/router"
-import type { Store } from "@ngrx/store"
-import type { Observable } from "rxjs"
-import type { User } from "../../models/user.model"
+import { Store } from "@ngrx/store"
+import { Observable } from "rxjs"
+import { User } from "../../models/user.model"
 import { selectLoggedIn, selectUser } from "../../store/session/session.selectors"
-import type { AuthService } from "../../services/auth.service"
+import { AuthService } from "../../services/auth.service"
 
 @Component({
   selector: "app-header",

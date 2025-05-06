@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
-import type { Observable } from "rxjs"
-import type { ApiService } from "./api.service"
-import type { User } from "../models/user.model"
+import { Observable } from "rxjs"
+import { ApiService } from "./api.service"
+import { User } from "../models/user.model"
 
 export interface ResendActivationEmailParams {
   resend_activation_email: {

@@ -1,9 +1,9 @@
 import { Component } from "@angular/core"
 import { CommonModule } from "@angular/common"
-import { RouterModule, type Router } from "@angular/router"
+import { RouterModule, Router } from "@angular/router"
 import { FormsModule } from "@angular/forms"
-import type { ToastrService } from "ngx-toastr"
-import type { UserService } from "../../services/user.service"
+import { ToastrService } from "ngx-toastr"
+import { UserService } from "../../services/user.service"
 
 @Component({
   selector: "app-signup",

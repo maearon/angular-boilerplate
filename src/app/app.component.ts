@@ -1,9 +1,9 @@
-import { Component, type OnInit } from "@angular/core"
+import { Component,  OnInit } from "@angular/core"
 import { RouterOutlet } from "@angular/router"
 import { CommonModule } from "@angular/common"
 import { HeaderComponent } from "./layouts/header/header.component"
 import { FooterComponent } from "./layouts/footer/footer.component"
-import type { AuthService } from "./services/auth.service"
+import { AuthService } from "./services/auth.service"
 
 @Component({
   selector: "app-root",

@@ -1,12 +1,12 @@
-import { Component, type OnInit } from "@angular/core"
+import { Component,  OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { RouterModule, ActivatedRoute } from "@angular/router"
 import { NgxPaginationModule } from "ngx-pagination"
-import type { ToastrService } from "ngx-toastr"
-import type { Store } from "@ngrx/store"
-import type { Observable } from "rxjs"
-import type { User } from "../../models/user.model"
-import type { Micropost } from "../../models/micropost.model"
+import { ToastrService } from "ngx-toastr"
+import { Store } from "@ngrx/store"
+import { Observable } from "rxjs"
+import { User } from "../../models/user.model"
+import { Micropost } from "../../models/micropost.model"
 import { UserService } from "../../services/user.service"
 import { MicropostService } from "../../services/micropost.service"
 import { RelationshipService } from "../../services/relationship.service"
@@ -110,14 +110,14 @@ import { selectUser } from "../../store/session/session.selectors"
                   <img *ngIf="item.image" [src]="item.image" alt="Post image" class="img-fluid mb-2">
                   <div class="text-muted small">
                     Posted {{ item.timestamp }} ago.
-                    <a
+                    <!-- <a
                       *ngIf="(currentUser$ | async)?.id === item.user_id"
                       href="#"
                       (click)="removeMicropost($event, item.id)"
                       class="ms-2"
                     >
                       delete
-                    </a>
+                    </a> -->
                   </div>
                 </div>
               </div>

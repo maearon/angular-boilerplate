@@ -1,10 +1,10 @@
-import { Component, type OnInit } from "@angular/core"
+import { Component,  OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
-import { RouterModule, type ActivatedRoute, type Router } from "@angular/router"
+import { RouterModule, ActivatedRoute,  Router } from "@angular/router"
 import { NgxPaginationModule } from "ngx-pagination"
-import type { ToastrService } from "ngx-toastr"
-import type { UserService } from "../../services/user.service"
-import type { User } from "../../models/user.model"
+import { ToastrService } from "ngx-toastr"
+import { UserService } from "../../services/user.service"
+import { User } from "../../models/user.model"
 
 @Component({
   selector: "app-show-follow",

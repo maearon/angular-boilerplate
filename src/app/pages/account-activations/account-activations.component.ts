@@ -1,8 +1,8 @@
-import { Component, type OnInit } from "@angular/core"
+import { Component,  OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
-import type { ActivatedRoute, Router } from "@angular/router"
-import type { ToastrService } from "ngx-toastr"
-import type { AccountActivationService } from "../../services/account-activation.service"
+import { ActivatedRoute, Router } from "@angular/router"
+import { ToastrService } from "ngx-toastr"
+import { AccountActivationService } from "../../services/account-activation.service"
 
 @Component({
   selector: "app-account-activations",
