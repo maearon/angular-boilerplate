@@ -1,5 +1,5 @@
-import { Component,  OnInit } from "@angular/core"
-import { CommonModule } from "@angular/common"
+import { Component, OnInit, Inject, PLATFORM_ID } from "@angular/core"
+import { CommonModule, isPlatformBrowser } from "@angular/common"
 import { RouterModule } from "@angular/router"
 import { FormsModule } from "@angular/forms"
 import { Store } from "@ngrx/store"
@@ -209,6 +209,7 @@ export class HomeComponent implements OnInit {
     private store: Store,
     private micropostService: MicropostService,
     private toastr: ToastrService,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
     this.loggedIn$ = this.store.select(selectLoggedIn)
     this.user$ = this.store.select(selectUser)
@@ -219,10 +220,13 @@ export class HomeComponent implements OnInit {
   }
 
   checkAuthAndLoadFeed(): void {
-    const token = localStorage.getItem("token") || sessionStorage.getItem("token")
-
-    if (token) {
-      this.loadFeed()
+    if (isPlatformBrowser(this.platformId)) {
+      const token = localStorage.getItem("token")
+      if (token) {
+        this.loadFeed()
+      } else {
+        this.loading = false
+      }
     } else {
       this.loading = false
     }
