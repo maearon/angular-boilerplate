@@ -14,20 +14,20 @@ import { RouterModule } from "@angular/router"
           <a routerLink="/contact" class="me-2">Contact</a>
           <a href="https://angular.io/" target="_blank" rel="noopener noreferrer">News</a>
         </div>
-        <div>
+        <!-- <div>
           <a href="https://angular.io/" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/images/angular.svg" alt="Angular logo" width="100" height="30">
+            <img src="/assets/images/angular.svg.png" alt="Angular logo" width="100" height="30">
           </a>
-        </div>
+        </div> -->
       </div>
     </footer>
   `,
   styles: [
     `
     .footer {
-      position: absolute;
-      bottom: 0;
+      position: relative; /* Changed from absolute to relative */
       width: 100%;
+      margin-top: 2rem;
     }
     a {
       color: #333;

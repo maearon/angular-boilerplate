@@ -10,11 +10,13 @@ import { AuthService } from "./services/auth.service"
   standalone: true,
   imports: [RouterOutlet, CommonModule, HeaderComponent, FooterComponent],
   template: `
+  <div class="app-container">
     <app-header></app-header>
-    <main class="container mt-4">
+    <main class="container mt-4 main-content">
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>
+    </div>
   `,
   styles: [
     `
@@ -24,6 +26,15 @@ import { AuthService } from "./services/auth.service"
     }
     main {
       padding-bottom: 60px;
+    }
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .main-content {
+      flex: 1;
+      padding-bottom: 2rem;
     }
   `,
   ],

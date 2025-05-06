@@ -12,7 +12,7 @@ export const routes: Routes = [
   },
   {
     path: "signup",
-    loadComponent: () => import("./pages/signup/ signup.component").then((m) => m.SignupComponent),
+    loadComponent: () => import("./pages/signup/signup.component").then((m) => m.SignupComponent),
   },
   {
     path: "users",
@@ -41,10 +41,10 @@ export const routes: Routes = [
     path: "about",
     loadComponent: () => import("./pages/about/about.component").then((m) => m.AboutComponent),
   },
-  // {
-  //   path: "contact",
-  //   loadComponent: () => import("./pages/contact/contact.component").then((m) => m.ContactComponent),
-  // },
+  {
+    path: "contact",
+    loadComponent: () => import("./pages/contact/contact.component").then((m) => m.ContactComponent),
+  },
   {
     path: "account_activations/:token/edit",
     loadComponent: () =>
