@@ -22,11 +22,11 @@ export const routes: Routes = [
     path: "users/:id",
     loadComponent: () => import("./pages/user-profile/ user-profile.component").then((m) => m.UserProfileComponent),
   },
-  // {
-  //   path: "users/:id/edit",
-  //   loadComponent: () => import("./pages/user-edit/user-edit.component").then((m) => m.UserEditComponent),
-  //   canActivate: [AuthGuard],
-  // },
+  {
+    path: "users/:id/edit",
+    loadComponent: () => import("./pages/user-edit/user-edit.component").then((m) => m.UserEditComponent),
+    canActivate: [AuthGuard],
+  },
   {
     path: "users/:id/following",
     loadComponent: () => import("./pages/show-follow/show-follow.component").then((m) => m.ShowFollowComponent),
@@ -50,13 +50,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import("./pages/account-activations/account-activations.component").then((m) => m.AccountActivationsComponent),
   },
-  // {
-  //   path: "account_activations/new",
-  //   loadComponent: () =>
-  //     import("./pages/account-activations/account-activations-new.component").then(
-  //       (m) => m.AccountActivationsNewComponent,
-  //     ),
-  // },
+  {
+    path: "account_activations/new",
+    loadComponent: () =>
+      import("./pages/account-activations-new/account-activations-new.component").then(
+        (m) => m.AccountActivationsNewComponent,
+      ),
+  },
   {
     path: "password_resets/new",
     loadComponent: () =>
