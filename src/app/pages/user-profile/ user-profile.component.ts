@@ -11,11 +11,12 @@ import { UserService } from "../../services/user.service"
 import { MicropostService } from "../../services/micropost.service"
 import { RelationshipService } from "../../services/relationship.service"
 import { selectUser } from "../../store/session/session.selectors"
+import { TimeAgoPipe } from "../../pipes/time-ago.pipe";
 
 @Component({
   selector: "app-user-profile",
   standalone: true,
-  imports: [CommonModule, RouterModule, NgxPaginationModule],
+  imports: [CommonModule, RouterModule, NgxPaginationModule, TimeAgoPipe],
   template: `
     <div class="user-profile">
       <div *ngIf="loading" class="text-center py-4">
@@ -96,11 +97,11 @@ import { selectUser } from "../../store/session/session.selectors"
                 class="list-group-item">
               <div class="d-flex">
                 <img
-                  [src]="'https://secure.gravatar.com/avatar/' + item.gravatar_id + '?s=' + item.size"
+                  [src]="item.gravatar"
                   [alt]="item.user_name"
                   class="rounded-circle me-3"
-                  [width]="item.size"
-                  [height]="item.size"
+                  [width]="50"
+                  [height]="50"
                 >
                 <div class="flex-grow-1">
                   <div class="mb-1">
@@ -109,7 +110,7 @@ import { selectUser } from "../../store/session/session.selectors"
                   <div class="mb-2">{{ item.content }}</div>
                   <img *ngIf="item.image" [src]="item.image" alt="Post image" class="img-fluid mb-2">
                   <div class="text-muted small">
-                    Posted {{ item.timestamp }} ago.
+                    Posted {{ item.createdAt | timeAgo }} ago.
                     <!-- <a
                       *ngIf="(currentUser$ | async)?.id === item.user_id"
                       href="#"

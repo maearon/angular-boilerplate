@@ -9,7 +9,7 @@ import { CommonModule } from "@angular/common"
     <h1>Contact</h1>
     <p>
       Contact the Angular Tutorial about the sample app at the
-      <a href="https://angular.io/resources">contact page</a>.
+      <a href="https://angular.dev/tutorials">contact page</a>.
     </p>
   `,
 })

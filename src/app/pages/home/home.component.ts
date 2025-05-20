@@ -10,11 +10,12 @@ import { User } from "../../models/user.model"
 import { Micropost } from "../../models/micropost.model"
 import { MicropostService } from "../../services/micropost.service"
 import { selectLoggedIn, selectUser } from "../../store/session/session.selectors"
+import { TimeAgoPipe } from "../../pipes/time-ago.pipe"
 
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, NgxPaginationModule],
+  imports: [CommonModule, RouterModule, FormsModule, NgxPaginationModule, TimeAgoPipe],
   template: `
     <div *ngIf="loading" class="text-center py-5">
       <div class="spinner-border" role="status">
@@ -108,26 +109,35 @@ import { selectLoggedIn, selectUser } from "../../store/session/session.selector
               <li *ngFor="let item of feedItems | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalCount }"
                   [id]="'micropost-' + item.id"
                   class="media mb-4 d-flex">
-                <a [routerLink]="['/users', item.user_id]" class="me-3">
+                <a [routerLink]="['/users', item.user?.id]" class="me-3">
                   <img
                     class="gravatar rounded-circle"
-                    [src]="'https://secure.gravatar.com/avatar/' + item.gravatar_id + '?s=' + item.size"
-                    [alt]="item.user_name"
-                    [width]="item.size"
-                    [height]="item.size"
+                    [src]="item.gravatar"
+                    [alt]="item.user?.name"
+                    [width]="50"
+                    [height]="50"
                   >
                 </a>
                 <div class="media-body">
                   <div class="user mb-1">
-                    <a [routerLink]="['/users', item.user_id]">{{ item.user_name }}</a>
+                    <a [routerLink]="['/users', item.user?.id]">{{ item.user?.name }}</a>
                   </div>
                   <div class="content mb-2">
                     {{ item.content }}
-                    <img *ngIf="item.image" [src]="item.image" alt="Post image" class="img-fluid mt-2">
+                    <div *ngIf="item.imageUrls.length > 0" class="mt-2">
+                      <img
+                        *ngFor="let imageUrl of item.imageUrls; let idx = index"
+                        [src]="'http://localhost:8080' + imageUrl"
+                        [alt]="'Image-' + imageUrl + '-' + idx"
+                        class="img-fluid mt-2"
+                        width="50"
+                        height="50"
+                      />
+                    </div>
                   </div>
                   <div class="timestamp text-muted small">
-                    Posted {{ item.timestamp }} ago.
-                    <!-- <a *ngIf="(user$ | async)?.id === item.user_id"
+                    Posted {{ item.createdAt | timeAgo }} ago.
+                    <!-- <a *ngIf="(user$ | async)?.id === item.user?.id"
                        href="#"
                        (click)="removeMicropost($event, item.id)"
                        class="ms-2">
@@ -155,14 +165,15 @@ import { selectLoggedIn, selectUser } from "../../store/session/session.selector
           <h1 class="display-4">Welcome to the Sample App</h1>
           <p class="lead">
             This is the home page for the
-            <a href="https://angular.io/" target="_blank" rel="noopener noreferrer">Angular Tutorial</a>
+            <a href="https://angular.dev/" target="_blank" rel="noopener noreferrer">Angular Tutorial</a>
             sample application.
           </p>
           <a routerLink="/signup" class="btn btn-lg btn-primary">Sign up now!</a>
         </div>
         <div class="text-center mt-4">
-          <a href="https://angular.io/" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/images/angular.svg" alt="Angular logo" width="180" height="38">
+          <a href="https://angular.dev/" target="_blank" rel="noopener noreferrer">
+            <!-- <img src="/assets/images/angular.svg" alt="Angular logo" width="180" height="38"> -->
+            <svg _ngcontent-ng-c139922363="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 223 236" width="32" class="angular-logo"><g _ngcontent-ng-c139922363="" clip-path="url(#a)"><path _ngcontent-ng-c139922363="" fill="url(#b)" d="m222.077 39.192-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z"></path><path _ngcontent-ng-c139922363="" fill="url(#c)" d="m222.077 39.192-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z"></path></g><defs _ngcontent-ng-c139922363=""><linearGradient _ngcontent-ng-c139922363="" id="b" x1="49.009" x2="225.829" y1="213.75" y2="129.722" gradientUnits="userSpaceOnUse"><stop _ngcontent-ng-c139922363="" stop-color="#E40035"></stop><stop _ngcontent-ng-c139922363="" offset=".24" stop-color="#F60A48"></stop><stop _ngcontent-ng-c139922363="" offset=".352" stop-color="#F20755"></stop><stop _ngcontent-ng-c139922363="" offset=".494" stop-color="#DC087D"></stop><stop _ngcontent-ng-c139922363="" offset=".745" stop-color="#9717E7"></stop><stop _ngcontent-ng-c139922363="" offset="1" stop-color="#6C00F5"></stop></linearGradient><linearGradient _ngcontent-ng-c139922363="" id="c" x1="41.025" x2="156.741" y1="28.344" y2="160.344" gradientUnits="userSpaceOnUse"><stop _ngcontent-ng-c139922363="" stop-color="#FF31D9"></stop><stop _ngcontent-ng-c139922363="" offset="1" stop-color="#FF5BE1" stop-opacity="0"></stop></linearGradient><clipPath _ngcontent-ng-c139922363="" id="a"><path _ngcontent-ng-c139922363="" fill="#fff" d="M0 0h223v236H0z"></path></clipPath></defs></svg>
           </a>
         </div>
       </ng-template>
@@ -235,8 +246,8 @@ export class HomeComponent implements OnInit {
   loadFeed(): void {
     this.micropostService.getAll({ page: this.page }).subscribe({
       next: (response) => {
-        this.feedItems = response.feed_items
-        this.totalCount = response.total_count
+        this.feedItems = response.feedItems.content
+        this.totalCount = response.totalElements
         this.followingCount = response.following
         this.followersCount = response.followers
         this.micropostCount = response.micropost
@@ -261,8 +272,8 @@ export class HomeComponent implements OnInit {
       const file = input.files[0]
       const sizeInMB = file.size / 1024 / 1024
 
-      if (sizeInMB > 512) {
-        this.toastr.error("Maximum file size is 512MB. Please choose a smaller file.")
+      if (sizeInMB > 5) {
+        this.toastr.error("Maximum file size is 5MB. Please choose a smaller file.")
         this.image = null
         input.value = ""
       } else {
@@ -280,7 +291,7 @@ export class HomeComponent implements OnInit {
     formData.append("micropost[content]", this.content)
 
     if (this.image) {
-      formData.append("micropost[image]", this.image, this.imageName)
+      formData.append("micropost[images]", this.image, this.imageName)
     }
 
     this.micropostService.create(formData).subscribe({

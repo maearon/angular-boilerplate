@@ -9,12 +9,20 @@ export interface MicropostListParams {
 }
 
 export interface MicropostListResponse {
-  feed_items: Micropost[]
+  feedItems: MicropostPage
   followers: number
   following: number
   gravatar: string
   micropost: number
-  total_count: number
+  totalElements: number
+}
+
+export interface MicropostPage {
+  content: Micropost[]
+  totalElements: number
+  totalPages?: number
+  size?: number
+  number?: number
 }
 
 export interface MicropostResponse {
