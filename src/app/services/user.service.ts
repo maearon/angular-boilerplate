@@ -93,7 +93,7 @@ export class UserService {
   }
 
   createUser(params: { user: UserCreateParams }): Observable<UserCreateResponse> {
-    return this.apiService.post<UserCreateResponse>("/users", params)
+    return this.apiService.post<UserCreateResponse>("/signup", params)
   }
 
   deleteUser(id: string): Observable<{ flash?: [string, string] }> {
