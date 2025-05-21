@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://http://localhost:8080/api",
+  apiUrl: "https://https://ruby-rails-boilerplate-3s9t.onrender.com/api",
 }
