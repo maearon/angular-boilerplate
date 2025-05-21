@@ -1,37 +1,53 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 
+// Example user IDs for prerendering; replace with your actual data source as needed
+const userIds = ['1', '2', '3'];
+
+// Example tokens for prerendering; replace with your actual data source as needed
+const tokens = ['token1', 'token2', 'token3'];
+
 export const serverRoutes: ServerRoute[] = [
   {
-    path: '',
-    renderMode: RenderMode.Prerender
+    path: 'users/:id',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return userIds.map(id => ({ id }));
+    }
   },
   {
-    path: 'login',
-    renderMode: RenderMode.Prerender
+    path: 'users/:id/edit',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return userIds.map(id => ({ id }));
+    }
   },
   {
-    path: 'signup',
-    renderMode: RenderMode.Prerender
+    path: 'users/:id/following',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return userIds.map(id => ({ id }));
+    }
   },
   {
-    path: 'users',
-    renderMode: RenderMode.Prerender
+    path: 'users/:id/followers',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return userIds.map(id => ({ id }));
+    }
   },
   {
-    path: 'about',
-    renderMode: RenderMode.Prerender
+    path: 'account_activations/:token/edit',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return tokens.map(token => ({ token }));
+    }
   },
   {
-    path: 'contact',
-    renderMode: RenderMode.Prerender
-  },
-  {
-    path: 'account_activations/new',
-    renderMode: RenderMode.Prerender
-  },
-  {
-    path: 'password_resets/new',
-    renderMode: RenderMode.Prerender
+    path: 'password_resets/:token',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return tokens.map(token => ({ token }));
+    }
   },
   {
     path: '**',
