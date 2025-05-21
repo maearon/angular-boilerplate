@@ -49,14 +49,14 @@ export class AuthService {
       tap((response) => {
         if (this.isBrowser && response.tokens && response.tokens.access) {
           const { token, expires } = response.tokens.access;
-          const rememberToken = response.tokens.refresh?.token || "";
+          const refreshToken = response.tokens.refresh?.token || "";
 
           if (credentials.remember_me) {
             localStorage.setItem("token", token);
-            localStorage.setItem("remember_token", rememberToken);
+            localStorage.setItem("refresh_token", refreshToken);
           } else {
             sessionStorage.setItem("token", token);
-            sessionStorage.setItem("remember_token", rememberToken);
+            sessionStorage.setItem("refresh_token", refreshToken);
           }
 
           this.store.dispatch(SessionActions.loginSuccess({ user: response.user }));
@@ -70,22 +70,22 @@ export class AuthService {
       tap(() => {
         if (this.isBrowser) {
           localStorage.removeItem("token");
-          localStorage.removeItem("remember_token");
+          localStorage.removeItem("refresh_token");
           sessionStorage.removeItem("token");
-          sessionStorage.removeItem("remember_token");
+          sessionStorage.removeItem("refresh_token");
         }
         this.store.dispatch(SessionActions.logout());
         this.router.navigate(["/"]);
       }),
       catchError((error) => {
         if (this.isBrowser) {
-          localStorage.removeItem("token");
-          localStorage.removeItem("remember_token");
-          sessionStorage.removeItem("token");
-          sessionStorage.removeItem("remember_token");
+          // localStorage.removeItem("token");
+          // localStorage.removeItem("refresh_token");
+          // sessionStorage.removeItem("token");
+          // sessionStorage.removeItem("refresh_token");
         }
-        this.store.dispatch(SessionActions.logout());
-        this.router.navigate(["/"]);
+        // this.store.dispatch(SessionActions.logout());
+        // this.router.navigate(["/"]);
         return throwError(() => error);
       }),
     );

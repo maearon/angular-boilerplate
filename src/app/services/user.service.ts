@@ -10,8 +10,8 @@ export interface UserListParams {
 }
 
 export interface UserListResponse {
-  users: User[]
-  total_count: number
+  content: User[]
+  totalElements: number
 }
 
 export interface UserShowResponse {
@@ -59,7 +59,7 @@ export interface UserCreateResponse {
 
 export interface FollowResponse {
   users: User[]
-  total_count: number
+  totalElements: number
   user: {
     id: string
     name: string

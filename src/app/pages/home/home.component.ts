@@ -110,6 +110,8 @@ import { TimeAgoPipe } from "../../pipes/time-ago.pipe"
                   [id]="'micropost-' + item.id"
                   class="media mb-4 d-flex">
                 <a [routerLink]="['/users', item.user?.id]" class="me-3">
+                  <!-- user.email | gravatar:50 -->
+                  <!-- gravatarUrl(email: string, size = 50) -->
                   <img
                     class="gravatar rounded-circle"
                     [src]="item.gravatar"
@@ -137,12 +139,12 @@ import { TimeAgoPipe } from "../../pipes/time-ago.pipe"
                   </div>
                   <div class="timestamp text-muted small">
                     Posted {{ item.createdAt | timeAgo }} ago.
-                    <!-- <a *ngIf="(user$ | async)?.id === item.user?.id"
+                    <a *ngIf="(user$ | async)?.id === item.user?.id"
                        href="#"
                        (click)="removeMicropost($event, item.id)"
                        class="ms-2">
                       delete
-                    </a> -->
+                    </a>
                   </div>
                 </div>
               </li>

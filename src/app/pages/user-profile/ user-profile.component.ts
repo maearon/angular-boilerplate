@@ -35,7 +35,7 @@ import { TimeAgoPipe } from "../../pipes/time-ago.pipe";
             <div class="card-body">
               <div class="d-flex align-items-center mb-3">
                 <img
-                  [src]="'https://secure.gravatar.com/avatar/' + user.gravatar_id + '?s=80'"
+                  [src]="user.gravatar"
                   [alt]="user.name"
                   class="rounded-circle me-3"
                   width="80"
@@ -166,18 +166,20 @@ export class UserProfileComponent implements OnInit {
   }
 
   fetchUserProfile(userId: string): void {
-    this.loading = true
+    // this.loading = true
     this.userService.getUser(userId, { page: this.page }).subscribe({
       next: (response) => {
         this.user = response.user
         this.microposts = response.microposts
         this.totalCount = response.total_count
         this.loading = false
+        this.followLoading = false
       },
       error: (error) => {
         console.error(error)
         this.error = "Failed to load user profile"
         this.loading = false
+        this.followLoading = false
       },
     })
   }
@@ -194,12 +196,12 @@ export class UserProfileComponent implements OnInit {
         if (response.follow) {
           this.fetchUserProfile(this.user.id)
         }
-        this.followLoading = false
+        // this.followLoading = false
       },
       error: (error) => {
         console.error(error)
         this.toastr.error("Failed to follow user")
-        this.followLoading = false
+        // this.followLoading = false
       },
     })
   }
@@ -211,12 +213,12 @@ export class UserProfileComponent implements OnInit {
         if (response.unfollow) {
           this.fetchUserProfile(this.user.id)
         }
-        this.followLoading = false
+        // this.followLoading = false
       },
       error: (error) => {
         console.error(error)
         this.toastr.error("Failed to unfollow user")
-        this.followLoading = false
+        // this.followLoading = false
       },
     })
   }

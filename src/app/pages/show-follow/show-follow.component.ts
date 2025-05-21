@@ -56,11 +56,11 @@ import { User } from "../../models/user.model"
           <li *ngFor="let followUser of users | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalCount }"
               class="list-group-item d-flex align-items-center">
             <img
-              [src]="'https://secure.gravatar.com/avatar/' + followUser.gravatar_id + '?s=40'"
+              [src]="followUser.gravatar"
               [alt]="followUser.name"
               class="rounded-circle me-3"
-              width="40"
-              height="40"
+              width="50"
+              height="50"
             >
             <a [routerLink]="['/users', followUser.id]" class="flex-grow-1">{{ followUser.name }}</a>
           </li>
@@ -126,7 +126,7 @@ export class ShowFollowComponent implements OnInit {
 
   handleResponse(response: any): void {
     this.users = response.users
-    this.totalCount = response.total_count
+    this.totalCount = response.totalElements
     this.profileUser = response.user
     this.loading = false
   }

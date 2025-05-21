@@ -15,9 +15,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   if (isPlatformBrowser(platformId)) {
     const token =
       localStorage.getItem('token') || sessionStorage.getItem('token');
-    const rememberToken =
-      localStorage.getItem('remember_token') ||
-      sessionStorage.getItem('remember_token');
+    // const refreshToken =
+    //   localStorage.getItem('refresh_token') ||
+    //   sessionStorage.getItem('refresh_token');
 
     // Clone the request and add the authorization header if token exists
     if (token) {
@@ -36,11 +36,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
           // Handle other 401 errors (unauthorized)
           if (error.status === 401) {
-            localStorage.removeItem('token');
-            localStorage.removeItem('remember_token');
-            sessionStorage.removeItem('token');
-            sessionStorage.removeItem('remember_token');
-            router.navigate(['/login']);
+            // localStorage.removeItem('token');
+            // localStorage.removeItem('refresh_token');
+            // sessionStorage.removeItem('token');
+            // sessionStorage.removeItem('refresh_token');
+            // router.navigate(['/login']);
             toastr.error('Your session has expired. Please log in again.');
           }
 

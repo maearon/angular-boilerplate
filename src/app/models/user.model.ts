@@ -1,8 +1,8 @@
 export interface User {
-  id: number
+  readonly id: string
   name: string
   email: string
-  gravatar_id?: string
+  gravatar?: string
   size?: number
   following?: number
   followers?: number

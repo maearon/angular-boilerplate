@@ -32,11 +32,11 @@ import { selectUser } from "../../store/session/session.selectors"
           <li *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalCount }"
               class="list-group-item d-flex align-items-center">
             <img
-              [src]="'https://secure.gravatar.com/avatar/' + user.gravatar_id + '?s=50'"
+              [src]="user.gravatar"
               [alt]="user.name"
               class="rounded-circle me-3"
-              width="40"
-              height="40"
+              width="50"
+              height="50"
             >
 
             <a [routerLink]="['/users', user.id]" class="flex-grow-1">{{ user.name }}</a>
@@ -86,8 +86,8 @@ export class UsersComponent implements OnInit {
     this.loading = true
     this.userService.getUsers({ page: this.page }).subscribe({
       next: (response) => {
-        this.users = response.users
-        this.totalCount = response.total_count
+        this.users = response.content
+        this.totalCount = response.totalElements
         this.loading = false
       },
       error: (error) => {

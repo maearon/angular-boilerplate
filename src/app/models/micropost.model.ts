@@ -1,7 +1,7 @@
 import { User as UserMicropost } from './user.model';
 
 interface MicropostBase {
-  readonly id: string
+  readonly id: number
   content: string
   gravatar?: string
   image: string

@@ -21,10 +21,10 @@ export class RelationshipService {
   constructor(private apiService: ApiService) {}
 
   follow(params: CreateRelationshipParams): Observable<CreateRelationshipResponse> {
-    return this.apiService.post<CreateRelationshipResponse>("/relationships", params)
+    return this.apiService.post<CreateRelationshipResponse>(`/relationships/${params.followed_id}/follow`, params)
   }
 
   unfollow(id: string): Observable<DestroyRelationshipResponse> {
-    return this.apiService.delete<DestroyRelationshipResponse>(`/relationships/${id}`)
+    return this.apiService.delete<DestroyRelationshipResponse>(`/relationships/${id}/unfollow`)
   }
 }
