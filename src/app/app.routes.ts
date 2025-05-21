@@ -21,23 +21,23 @@ export const routes: Routes = [
   {
     path: "users/:id",
     loadComponent: () => import("./pages/user-profile/ user-profile.component").then((m) => m.UserProfileComponent),
-    data: { renderMode: 'ssr' }
+    data: { renderMode: 'no-prerender' }
   },
   {
     path: "users/:id/edit",
     loadComponent: () => import("./pages/user-edit/user-edit.component").then((m) => m.UserEditComponent),
     canActivate: [AuthGuard],
-    data: { renderMode: 'ssr' }
+    data: { renderMode: 'no-prerender' }
   },
   {
     path: "users/:id/following",
     loadComponent: () => import("./pages/show-follow/show-follow.component").then((m) => m.ShowFollowComponent),
-    data: { type: "following", renderMode: 'ssr' },
+    data: { type: "following", renderMode: 'no-prerender' },
   },
   {
     path: "users/:id/followers",
     loadComponent: () => import("./pages/show-follow/show-follow.component").then((m) => m.ShowFollowComponent),
-    data: { type: "followers", renderMode: 'ssr' },
+    data: { type: "followers", renderMode: 'no-prerender' },
   },
   {
     path: "about",
@@ -51,7 +51,7 @@ export const routes: Routes = [
     path: "account_activations/:token/edit",
     loadComponent: () =>
       import("./pages/account-activations/account-activations.component").then((m) => m.AccountActivationsComponent),
-    data: { renderMode: 'ssr' }
+    data: { renderMode: 'no-prerender' }
   },
   {
     path: "account_activations/new",
@@ -69,7 +69,7 @@ export const routes: Routes = [
     path: "password_resets/:token",
     loadComponent: () =>
       import("./pages/password-resets/password-resets.component").then((m) => m.PasswordResetsComponent),
-    data: { renderMode: 'ssr' }
+    data: { renderMode: 'no-prerender' }
   },
   {
     path: "**",
