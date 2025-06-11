@@ -179,12 +179,18 @@ export class UserEditComponent implements OnInit {
       .subscribe({
         next: (response) => {
           if (response.flash_success) {
-            this.toastr.success(response.flash_success[1])
+            const message = response.flash_success[1]
+            this.toastr.success(message)
+            alert(message) // ✅ Thêm alert JS thông báo thành công
             this.router.navigate([`/users/${this.userId}`])
           }
 
           if (response.error) {
+            const errorMsg = Array.isArray(response.error)
+              ? response.error.join(', ')
+              : response.error
             this.errors = Array.isArray(response.error) ? response.error : [response.error]
+            alert(errorMsg) // ✅ Alert khi có lỗi phía server trả về
           }
 
           this.submitting = false
@@ -200,8 +206,11 @@ export class UserEditComponent implements OnInit {
               })
             })
             this.errors = errorMessages
+            alert(errorMessages.join('\n')) // ✅ Alert nhiều lỗi validation
           } else {
-            this.toastr.error("Failed to update profile")
+            const fallbackMsg = "Failed to update profile"
+            this.toastr.error(fallbackMsg)
+            alert(fallbackMsg) // ✅ Alert fallback
           }
           this.submitting = false
         },

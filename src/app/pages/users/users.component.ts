@@ -107,16 +107,19 @@ export class UsersComponent implements OnInit {
     if (confirm(`Are you sure you want to delete ${userName}?`)) {
       this.userService.deleteUser(userId).subscribe({
         next: (response) => {
+          let message = "User deleted successfully"
           if (response.flash) {
-            this.toastr.success(response.flash[1])
-          } else {
-            this.toastr.success("User deleted successfully")
+            message = response.flash[1]
           }
+          this.toastr.success(message)
+          alert(message) // ✅ Alert thông báo thành công
           this.fetchUsers()
         },
         error: (error) => {
           console.error(error)
-          this.toastr.error("Failed to delete user")
+          const errorMessage = "Failed to delete user"
+          this.toastr.error(errorMessage)
+          alert(errorMessage) // ✅ Alert thông báo lỗi
         },
       })
     }
