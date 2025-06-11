@@ -1,6 +1,7 @@
 export interface User {
   readonly id: string
   name: string
+  username: string
   email: string
   gravatar?: string
   size?: number

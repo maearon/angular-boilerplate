@@ -39,7 +39,7 @@ import { selectUser } from "../../store/session/session.selectors"
               height="50"
             >
 
-            <a [routerLink]="['/users', user.id]" class="flex-grow-1">{{ user.name }}</a>
+            <a [routerLink]="['/users', user.id]" class="flex-grow-1">{{ user.username }}</a>
 
             <!-- <button
               *ngIf="currentUser$ | async as currentUser; else noUser"

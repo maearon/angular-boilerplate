@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: "https://ruby-rails-boilerplate-3s9t.onrender.com/api",
+  apiUrl: "https://spring-boilerplate.onrender.com/api",
 }
