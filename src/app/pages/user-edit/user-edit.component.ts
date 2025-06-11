@@ -146,7 +146,7 @@ export class UserEditComponent implements OnInit {
 
   fetchUserData(): void {
     this.loading = true
-    this.userService.editUser(this.userId).subscribe({
+    this.userService.editUser().subscribe({
       next: (data) => {
         this.user = data.user
         this.gravatar = data.gravatar

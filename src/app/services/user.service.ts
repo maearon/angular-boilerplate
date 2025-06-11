@@ -84,8 +84,8 @@ export class UserService {
     return this.apiService.get<UserShowResponse>(`/users/${id}`, params)
   }
 
-  editUser(id: string): Observable<UserEditResponse> {
-    return this.apiService.get<UserEditResponse>(`/users/${id}/edit`)
+  editUser(): Observable<UserEditResponse> {
+    return this.apiService.get<UserEditResponse>(`/users/edit`)
   }
 
   updateUser(id: string, params: { user: UserUpdateParams }): Observable<UserUpdateResponse> {
