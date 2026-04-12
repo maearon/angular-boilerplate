@@ -9,9 +9,10 @@ import { UserService } from '../../core/services/user.service';
   standalone: true,
   imports: [FormsModule, RouterLink],
   template: `
-    <h1>Sign up</h1>
+
     <div class="row">
       <div class="col-md-6 offset-md-3">
+        <h1>Sign up</h1>
         <form (submit)="onSubmit($event)">
           @if (errors().length) {
             <div class="alert alert-danger">

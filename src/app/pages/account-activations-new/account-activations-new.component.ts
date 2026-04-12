@@ -1,15 +1,17 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AccountActivationService } from '../../core/services/account-activation.service';
 
 @Component({
   selector: 'app-account-activations-new',
   standalone: true,
   imports: [FormsModule],
   template: `
-    <h1>Resend Activation Email</h1>
+
     <div class="row">
       <div class="col-md-6 offset-md-3">
+        <h1>Resend Activation Email</h1>
         <form (submit)="onSubmit($event)">
           <div class="mb-3">
             <label class="form-label" for="email">Email</label>
@@ -28,16 +30,29 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AccountActivationsNewComponent {
   private readonly toastr = inject(ToastrService);
+  private readonly activationService = inject(AccountActivationService);
 
   email = '';
   readonly submitting = signal(false);
 
   onSubmit(ev: Event): void {
     ev.preventDefault();
+    if (!this.email) return;
     this.submitting.set(true);
-    setTimeout(() => {
-      this.toastr.info('Resend activation API chưa có — thêm endpoint Laravel hoặc dùng web.');
-      this.submitting.set(false);
-    }, 400);
+    // setTimeout(() => {
+    //   this.toastr.info('Resend activation API chưa có — thêm endpoint Laravel hoặc dùng web.');
+    //   this.submitting.set(false);
+    // }, 400);
+    this.activationService.resendActivationEmail({ resend_activation_email: { email: this.email } }).subscribe({
+      next: () => {
+        this.toastr.success('Activation email sent');
+        this.submitting.set(false);
+      },
+      error: (err) => {
+        this.submitting.set(false);
+        const msg = err.error?.message ?? 'Failed to send activation email';
+        this.toastr.error(msg);
+      },
+    });
   }
 }
