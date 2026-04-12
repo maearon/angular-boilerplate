@@ -49,7 +49,7 @@ export class AccountActivationsComponent {
   private readonly toastr = inject(ToastrService);
   private readonly activationService = inject(AccountActivationService);
 
-  readonly token = this.route.snapshot.paramMap.get('token') ?? '';
+  readonly token = this.route.snapshot.paramMap.get('token') ?? '123456789abcdef';
   readonly email = this.route.snapshot.queryParamMap.get('email') ?? 'random@example.com';
 
   readonly loading = signal(false);
