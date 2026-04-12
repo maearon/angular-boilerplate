@@ -39,6 +39,7 @@ import { UserService } from '../../core/services/user.service';
             <input id="pc" name="pc" type="password" class="form-control" required [(ngModel)]="passwordConfirmation" />
           </div>
           <button type="submit" class="btn btn-primary" [disabled]="submitting()">Create my account</button>
+          <p class="mt-3 text-center mb-0">Already have an account? <a routerLink="/login">Log in</a></p>
         </form>
         <p class="text-center mt-4">
           <a routerLink="/account_activations/new" class="btn btn-outline-secondary btn-sm">Resend activation email</a>

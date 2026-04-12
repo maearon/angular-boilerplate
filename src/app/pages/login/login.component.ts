@@ -49,6 +49,9 @@ import { AuthSessionService } from '../../core/services/auth-session.service';
           </button>
           <p class="mt-3 text-center mb-0">New user? <a routerLink="/signup">Sign up now!</a></p>
         </form>
+        <p class="text-center mt-4">
+          <a routerLink="/password_resets/new" class="btn btn-outline-secondary btn-sm">Forgot Password?</a>
+        </p>
       </div>
     </div>
   `,
