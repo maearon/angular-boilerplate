@@ -50,7 +50,7 @@ export class AccountActivationsComponent {
   private readonly activationService = inject(AccountActivationService);
 
   readonly token = this.route.snapshot.paramMap.get('token') ?? '';
-  readonly email = this.route.snapshot.queryParamMap.get('email') ?? '';
+  readonly email = this.route.snapshot.queryParamMap.get('email') ?? 'random@example.com';
 
   readonly loading = signal(false);
   readonly success = signal(false);
