@@ -39,7 +39,7 @@ export class AccountActivationService {
 
   activateAccount(token: string, email: string): Observable<ActivationUpdateResponse> {
     return this.http.patch<ActivationUpdateResponse>(
-      `${this.baseUrl}/account_activations/${token}`,
+      `${this.baseUrl}/account_activations/edit/${token}`,
       { email }
     );
   }
