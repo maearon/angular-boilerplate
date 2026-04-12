@@ -47,7 +47,7 @@ export class PasswordResetService {
     params: PasswordResetUpdateParams
   ): Observable<PasswordResetUpdateResponse> {
     return this.http.patch<PasswordResetUpdateResponse>(
-      `${this.baseUrl}/password_resets/${token}`,
+      `${this.baseUrl}/password_resets/edit/${token}`,
       params
     );
   }
