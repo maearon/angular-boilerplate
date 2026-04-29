@@ -1,0 +1,52 @@
+@if (loading()) {
+  <div class="text-center py-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading</span>
+    </div>
+  </div>
+} @else if (feed().length === 0) {
+  <div class="alert alert-info">No microposts yet.</div>
+} @else {
+  <div class="micropost-feed">
+    <ol class="list-unstyled">
+      @for (item of feed(); track item.id) {
+        <app-micropost-item
+          [item]="item"
+          (delete)="deleteItem.emit($event)">
+        </app-micropost-item>
+      }
+    </ol>
+  </div>
+
+  @if (meta(); as m) {
+    @if (m.last_page > 1) {
+      <nav>
+        <ul class="pagination">
+          <li class="page-item" [class.disabled]="m.current_page <= 1">
+            <button
+              class="page-link"
+              type="button"
+              (click)="goPage(m.current_page - 1)">
+              Previous
+            </button>
+          </li>
+
+          <li class="page-item disabled">
+            <span class="page-link">
+              {{ m.current_page }} / {{ m.last_page }}
+            </span>
+          </li>
+
+          <li class="page-item" [class.disabled]="m.current_page >= m.last_page">
+            <button
+              class="page-link"
+              type="button"
+              (click)="goPage(m.current_page + 1)">
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
+    }
+  }
+}

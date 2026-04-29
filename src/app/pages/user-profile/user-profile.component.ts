@@ -22,7 +22,7 @@ import { TimeAgoPipe } from '../../core/pipes/time-ago.pipe';
           <div class="card mb-4">
             <div class="card-body">
               <div class="d-flex align-items-center mb-3">
-                <img [src]="u.gravatar" [alt]="u.name" class="gravatar rounded-circle me-3" width="80" height="80" />
+                <img [src]="u.avatar" [alt]="u.name" class="gravatar rounded-circle me-3" width="80" height="80" />
                 <h2 class="h4 mb-0">{{ u.name }}</h2>
               </div>
               <div>{{ u.micropost }} micropost{{ u.micropost !== 1 ? 's' : '' }}</div>
@@ -63,7 +63,7 @@ import { TimeAgoPipe } from '../../core/pipes/time-ago.pipe';
               @for (item of posts(); track item.id) {
                 <li class="list-group-item">
                   <div class="d-flex">
-                    <img [src]="item.user?.gravatar" class="gravatar rounded-circle me-3" width="50" height="50" alt="" />
+                    <img [src]="item.user?.avatar" class="gravatar rounded-circle me-3" width="50" height="50" alt="" />
                     <div class="flex-grow-1">
                       <div class="mb-1">
                         <a [routerLink]="['/users', item.user?.id]">{{ item.user?.name }}</a>

@@ -1,5 +1,7 @@
 /** Laravel paginated JSON Resource collection */
 export interface Paginated<T> {
+  feed_items: T[]; // renamed from `data` to `feed_items` to avoid confusion with other APIs
+  total_count: number; // renamed from `meta.total` to `total_count` for clarity
   data: T[];
   links: {
     first: string;
@@ -18,11 +20,15 @@ export interface Paginated<T> {
 export interface UserJson {
   id: number;
   name: string;
-  username: string;
+  // username: string;
   email: string;
-  activated?: boolean;
-  createdAt?: string;
-  gravatar: string;
+  // activated?: boolean;
+  // createdAt?: string;
+  // gravatar: string;
+  admin: boolean;
+  token: string;
+  avatar?: string | '';
+  passwordHash?: string;
 }
 
 export interface UserProfileJson extends UserJson {
@@ -36,10 +42,17 @@ export interface CurrentUserJson {
   id: number;
   name: string;
   email: string;
-  following: number;
-  followers: number;
-  micropost: number;
-  gravatar: string;
+  following: number | 0;
+  followers: number | 0;
+  micropost: number | 0;
+  // gravatar: string;
+  role: boolean;
+  avatar: string;
+  token: string;
+}
+
+export type SessionResponse = {
+  user: CurrentUserJson
 }
 
 export interface MicropostJson {
@@ -47,15 +60,29 @@ export interface MicropostJson {
   content: string;
   createdAt: string;
   imageUrl: string | null;
+  gravatar_id: string;
+  user_name: string;
+  user_id: string;
+  timestamp: string;
   user: {
     id: number;
     name: string;
     email: string;
-    gravatar: string;
+    avatar: string;
   } | null;
 }
 
 export interface LoginResponseJson {
   user: UserJson;
-  token: string;
+  // token: string;
+  tokens: {
+    access: {
+      token: string;
+      expires: string;
+    };
+    refresh: {
+      token: string;
+      expires: string;
+    };
+  };
 }

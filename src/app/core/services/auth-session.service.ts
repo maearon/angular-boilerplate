@@ -2,7 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { computed, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, switchMap, tap, catchError, of } from 'rxjs';
-import type { CurrentUserJson, LoginResponseJson } from '../models/api.types';
+import type { CurrentUserJson, LoginResponseJson, SessionResponse } from '../models/api.types';
 import { ApiService } from './api.service';
 
 @Injectable({ providedIn: 'root' })
@@ -23,31 +23,33 @@ export class AuthSessionService {
     if (!token) {
       return;
     }
-    this.api.get<CurrentUserJson>('/user').subscribe({
-      next: (u) => this.user.set(u),
+    this.api.get<SessionResponse>('/sessions').subscribe({
+      next: (res) => this.user.set(res.user),
       error: () => this.clearTokens(),
     });
   }
 
-  login(email: string, password: string, rememberMe: boolean): Observable<CurrentUserJson> {
-    return this.api.post<LoginResponseJson>('/login', { email, password }).pipe(
+  login(email: string, password: string, rememberMe: boolean): Observable<SessionResponse> {
+    return this.api.post<LoginResponseJson>('/login', { session: { email, password } }).pipe(
       tap((res) => {
+        console.log(res);
         if (!isPlatformBrowser(this.platformId)) {
           return;
         }
+        const token = res.tokens.access.token;
         if (rememberMe) {
-          localStorage.setItem('token', res.token);
+          localStorage.setItem('token', token);
         } else {
-          sessionStorage.setItem('token', res.token);
+          sessionStorage.setItem('token', token);
         }
       }),
-      switchMap(() => this.api.get<CurrentUserJson>('/user')),
-      tap((u) => this.user.set(u)),
+      switchMap(() => this.api.get<SessionResponse>('/sessions')),
+      tap((res) => this.user.set(res.user)),
     );
   }
 
   logout(): Observable<unknown> {
-    return this.api.post<{ message: string }>('/logout', {}).pipe(
+    return this.api.delete<{ message: string }>('/logout', {}).pipe(
       tap(() => {
         this.clearTokens();
         this.user.set(null);
@@ -68,5 +70,25 @@ export class AuthSessionService {
     }
     localStorage.removeItem('token');
     sessionStorage.removeItem('token');
+  }
+
+  incrementMicropostCount(): void {
+    const u = this.user();
+    if (!u) return;
+
+    this.user.set({
+      ...u,
+      micropost: (u.micropost ?? 0) + 1,
+    });
+  }
+
+  decrementMicropostCount(): void {
+    const u = this.user();
+    if (!u) return;
+
+    this.user.set({
+      ...u,
+      micropost: Math.max((u.micropost ?? 1) - 1, 0),
+    });
   }
 }

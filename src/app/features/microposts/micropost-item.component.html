@@ -1,0 +1,43 @@
+<li [id]="'micropost-' + item().id" class="media mb-4 d-flex">
+  <a [routerLink]="['/users', item().user?.id]" class="me-3">
+    <img
+      class="gravatar rounded-circle"
+      [src]="'https://secure.gravatar.com/avatar/' + item().gravatar_id + '?s=50'"
+      [alt]="item().user?.name"
+      width="50"
+      height="50"
+    />
+  </a>
+
+  <div class="media-body">
+    <div class="user mb-1">
+      <a [routerLink]="['/users', item().user_id]">
+        {{ item().user_name }}
+      </a>
+    </div>
+
+    <div class="content mb-2">
+      {{ item().content }}
+
+      @if (item().imageUrl) {
+        <div class="mt-2">
+          <img
+            [src]="item().imageUrl"
+            class="img-fluid rounded"
+            alt=""
+          />
+        </div>
+      }
+    </div>
+
+    <div class="timestamp text-muted small">
+      Posted {{ item().timestamp }} ago.
+
+      @if (auth.user()?.id === item().user?.id) {
+        <a href="#" class="ms-2" (click)="onDelete($event)">
+          delete
+        </a>
+      }
+    </div>
+  </div>
+</li>

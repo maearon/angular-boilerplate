@@ -22,7 +22,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       if (
         err.status === 401 &&
         !req.url.includes('/login') &&
-        !req.url.includes('/user')
+        // !req.url.includes('/user') &&
+        !req.url.includes('/signup') &&
+        !req.url.includes('/account_activations') &&
+        !req.url.includes('/password_resets')
       ) {
         toastr.error('Session expired or unauthorized.');
       }

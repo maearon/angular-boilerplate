@@ -132,3 +132,13 @@ html {
   // display: inline-block; // need back to center horizontally
   margin-top: 1rem;
 }
+
+body {
+  padding-top: 56px;
+}
+
+
+.navbar-collapse {
+  background: #0d6efd; /* cùng màu navbar */
+  padding: 0.5rem 0;
+}

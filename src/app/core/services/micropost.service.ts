@@ -7,8 +7,8 @@ import { ApiService } from './api.service';
 export class MicropostService {
   private readonly api = inject(ApiService);
 
-  feed(page = 1, perPage = 10): Observable<Paginated<MicropostJson>> {
-    return this.api.get<Paginated<MicropostJson>>('/microposts', { page, per_page: perPage });
+  feed(page = 1, perPage = 5): Observable<Paginated<MicropostJson>> {
+    return this.api.get<Paginated<MicropostJson>>('', { page, per_page: perPage });
   }
 
   create(content: string, image: File | null): Observable<MicropostJson> {

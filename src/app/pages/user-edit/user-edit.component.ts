@@ -19,7 +19,7 @@ import { UserService } from '../../core/services/user.service';
           <div class="col-md-4">
             <div class="card mb-4">
               <div class="card-body text-center">
-                <img [src]="u.gravatar" [alt]="u.name" class="gravatar rounded-circle mb-3" width="80" height="80" />
+                <img [src]="u.avatar" [alt]="u.name" class="gravatar rounded-circle mb-3" width="80" height="80" />
                 <h2 class="h5">{{ u.name }}</h2>
                 <p class="mt-2">
                   <a href="https://gravatar.com/emails" target="_blank" rel="noopener noreferrer">change</a>

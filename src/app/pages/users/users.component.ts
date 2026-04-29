@@ -20,8 +20,8 @@ import { UserService } from '../../core/services/user.service';
       <ul class="list-group">
         @for (u of list(); track u.id) {
           <li class="list-group-item d-flex align-items-center">
-            <img [src]="u.gravatar" [alt]="u.name" class="gravatar rounded-circle me-3" width="50" height="50" />
-            <a [routerLink]="['/users', u.id]" class="flex-grow-1">{{ u.username }}</a>
+            <img [src]="u.avatar" [alt]="u.name" class="gravatar rounded-circle me-3" width="50" height="50" />
+            <a [routerLink]="['/users', u.id]" class="flex-grow-1">{{ u.name }}</a>
           </li>
         }
       </ul>
